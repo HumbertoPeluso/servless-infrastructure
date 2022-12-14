@@ -1,5 +1,7 @@
 .terraform.lock.hcl
 .terraform/
+lambdas/layers/utils/nodejs/node_modules/
 *.tfvars
 *tfstate
 *.tfstate.backup
+*.zip

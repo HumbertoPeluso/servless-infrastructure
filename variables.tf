@@ -1,6 +1,6 @@
 variable "env" {
   type    = string
-  default = "dev"
+  default = "env"
 }
 
 variable "aws_region" {
@@ -14,7 +14,7 @@ variable "aws_region" {
 } */
 
 variable "aws_account_id" {
-  type    = string
+  type = string
 }
 
 variable "service_name" {

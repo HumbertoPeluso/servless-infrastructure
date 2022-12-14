@@ -19,16 +19,52 @@ resource "aws_apigatewayv2_integration" "todos" {
   integration_uri        = aws_lambda_function.todos[each.key].invoke_arn
 }
 
-resource "aws_apigatewayv2_route" "todos" {
+/* resource "aws_apigatewayv2_route" "todos" {
   for_each = local.lambdas
 
   api_id    = aws_apigatewayv2_api.this.id
-  route_key = "${upper(each.key)} /v1/todos"
+  route_key = "${upper(each.key.http_type)} /v1/todos"
   target    = "integrations/${aws_apigatewayv2_integration.todos[each.key].id}"
+} */
+
+/* resource "aws_apigatewayv2_route" "todos_get_one" {
+  api_id    = aws_apigatewayv2_api.this.id
+  route_key = "GET /v1/todos/{todoId}"
+  target    = "integrations/${aws_apigatewayv2_integration.todos["get"].id}"
 }
 
 resource "aws_apigatewayv2_route" "todos_get" {
   api_id    = aws_apigatewayv2_api.this.id
-  route_key = "GET /v1/todos/{todoId}"
+  route_key = "GET /v1/todos"
   target    = "integrations/${aws_apigatewayv2_integration.todos["get"].id}"
+}
+
+resource "aws_apigatewayv2_route" "todos_delete" {
+  api_id    = aws_apigatewayv2_api.this.id
+  route_key = "DELETE /v1/todos"
+  target    = "integrations/${aws_apigatewayv2_integration.todos["delete"].id}"
+}
+
+resource "aws_apigatewayv2_route" "todos_post" {
+  api_id    = aws_apigatewayv2_api.this.id
+  route_key = "POST /v1/todos/{todoId}"
+  target    = "integrations/${aws_apigatewayv2_integration.todos["post"].id}"
+}
+
+resource "aws_apigatewayv2_route" "todos_put" {
+  api_id    = aws_apigatewayv2_api.this.id
+  route_key = "PUT /v1/todos/{todoId}"
+  target    = "integrations/${aws_apigatewayv2_integration.todos["put"].id}"
+}
+
+resource "aws_apigatewayv2_route" "todos_test" {
+  api_id    = aws_apigatewayv2_api.this.id
+  route_key = "GET /v1/todos/test"
+  target    = "integrations/${aws_apigatewayv2_integration.todos["test"].id}"
+} */
+
+resource "aws_apigatewayv2_route" "todos_test" {
+  api_id    = aws_apigatewayv2_api.this.id
+  route_key = "POST /v1/todos/auth/signup"
+  target    = "integrations/${aws_apigatewayv2_integration.todos["signup"].id}"
 }

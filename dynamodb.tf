@@ -1,5 +1,5 @@
-resource "aws_dynamodb_table" "this" {
-  name         = local.namespaced_service_name
+/* resource "aws_dynamodb_table" "this" {
+  name         = "User"
   hash_key     = "id"
   billing_mode = "PAY_PER_REQUEST"
 
@@ -7,9 +7,9 @@ resource "aws_dynamodb_table" "this" {
     name = "id"
     type = "N"
   }
-}
+} */
 
-resource "aws_dynamodb_table_item" "this" {
+/* resource "aws_dynamodb_table_item" "this" {
   table_name = aws_dynamodb_table.this.name
   hash_key   = aws_dynamodb_table.this.hash_key
 
@@ -20,4 +20,4 @@ resource "aws_dynamodb_table_item" "this" {
   "done": {"S": "false"}
 }
 ITEM
-}
+} */

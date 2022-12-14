@@ -43,8 +43,8 @@ resource "aws_lambda_function" "todos" {
 
   environment {
     variables = {
-      TABLE = aws_ssm_parameter.dynamodb_table.name
-      DEBUG = var.env == "dev"
+     // TABLE = aws_ssm_parameter.dynamodb_table.name
+      DEBUG = var.env
     }
   }
 }

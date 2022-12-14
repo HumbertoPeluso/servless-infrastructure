@@ -45,7 +45,7 @@ data "aws_iam_policy_document" "create_logs_cloudwatch" {
 
   statement {
     effect    = "Allow"
-    resources = ["arn:aws:dynamodb:${var.aws_region}:${var.aws_account_id}:table/${aws_dynamodb_table.this.name}"]
+    resources = ["*"]//["arn:aws:dynamodb:${var.aws_region}:${var.aws_account_id}:table/${aws_dynamodb_table.this.name}"]
     actions = [
       "dynamodb:PutItem",
       "dynamodb:DescribeTable",
@@ -53,13 +53,14 @@ data "aws_iam_policy_document" "create_logs_cloudwatch" {
       "dynamodb:GetItem",
       "dynamodb:Scan",
       "dynamodb:Query",
+      "dynamodb:CreateTable",
       "dynamodb:UpdateItem"
     ]
   }
 
   statement {
     effect    = "Allow"
-    resources = ["arn:aws:ssm:${var.aws_region}:${var.aws_account_id}:parameter/${aws_ssm_parameter.dynamodb_table.name}"]
+    resources = ["*"] // ["arn:aws:ssm:${var.aws_region}:${var.aws_account_id}:parameter/${aws_ssm_parameter.dynamodb_table.name}"]
     actions = [
       "ssm:GetParameters",
       "ssm:GetParameter",
